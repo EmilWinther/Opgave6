@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Athletes</title>
+</head>
+
+<body>
+    <h1>Athletes</h1>
+    <div id="app">
+        <h2>list of athletes</h2>
+        <ul v-if="athletes">
+            <li v-for="athlete in athletes">
+                Id: {{athlete.id}}<br>Name: {{athlete.name}}<br>Country: {{athlete.country}}<br>Height: {{athlete.height}}
+            </li>
+        </ul>
+
+
+        <h2>Athlete by country</h2>
+        <input v-model="athleteCountry" placeholder="country" type="text">
+        <button v-on:click="getAthleteByCountry(athleteCountry)" class="btn btn-primary">Get athlete</button>
+        <div v-if="singleAthlete">{{ singleAthlete }}</div>
+
+
+        <h3>Athlete table</h3>
+        <div class="container">
+            <table class="table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Height</th>
+                    </tr>
+                </thead>
+                <tr v-for="athlete in athletes">
+                    <td>{{athlete.id}}</td>
+                    <td>{{athlete.name}}</td>
+                    <td>{{athlete.country}}</td>
+                    <td>{{athlete.height}} </td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Add athlete</h2>
+        <input v-model="addData.name" placeholder="name" type="text">
+        <input v-model="addData.country" placeholder="country" type="text">
+        <input v-model="addData.height" placeholder="height" type="number">
+        <button v-on:click="addAthlete()" class="btn btn-dark">Add athlete</button>
+        <div>{{addMessage}}</div>
+        <h2>Delete athlete</h2>
+        <input v-model="idToDelete" placeholder="id" type="number">
+        <button v-on:click="deleteAthleteById(idToDelete)" class="btn btn-danger">Delete</button>
+    </div>
+    <script src=" js/index.js "></script>
+</body>
+
+</html>
